@@ -1,0 +1,38 @@
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                
+                slow = head;
+
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+
+                return slow;
+            }
+        }
+
+        return null;
+    }
+}
+
+Case 1:                              Case 2:
+
+Input:                               Input:
+head = [3,2,0,-4]                    head = [1]
+pos = 1                              pos = -1
+
+Output:                              Output:
+tail connects to node index 1        no cycle
+
+Expected:                            Expected:
+tail connects to node index 1        no cycle
